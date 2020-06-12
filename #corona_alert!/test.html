@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<head>
+  <title>Header test module</title>  
+  <meta charset="UTF-8">   
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" type="text/css" href="covidwebdesign.css">	
+<meta name="description" content="a general infomatic interface providing all related info and guidance for knowing about covid-19pandemics and also allows user to report about their situation and know about thier health"/>
+<link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!--jquery library-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--Latest compiled and minified Javascript-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>   
+  <style>
+#tstbtn
+{
+    width: 50px;height: 50px;padding: 7px 7px;border-radius: 25px;font-size: 18px;background-color:  #111;
+	border:none;color: #ffff;bottom: 30px;position: fixed;right: 30px;text-align: center; 
+}
+#tstbtn:hover
+{
+    background-color:#222;
+    font-size:20px;
+}    
+#myBtn {
+    width: 50px;height: 50px;padding: 7px 10px;border-radius: 25px;font-size: 20px;
+	        border:none;color: black;bottom: 20px;position: fixed;right: 20px;text-align: center;	
+  display: none; /* Hidden by default */
+  position: absolute; /* Fixed/sticky position */
+  top: 2118px; /* Place the button at the bottom of the page */
+  right: 615px; /* Place the button 30px from the right */
+  z-index: 1; /* Make sure it does not overlap */  
+  outline: none; /* Remove outline */
+  background-color:#e6e6e6;/* Set a background color */  
+  cursor: pointer; /* Add a mouse pointer on hover */    
+}
+
+#myBtn:hover {
+    background-color: #d9d9d9; /* Add a dark-grey background on hover */
+  color:black;
+  font-size:22px;
+}
+#i1:hover
+{
+    font-size:22px;    
+}
+#qllist{width:50%}
+#qllist li:hover
+{    
+    color:#d9d9d9;
+    text-decoration:underline;
+}
+    /*heading line-1 of header*/
+h1
+{ 	
+	font-weight: bold;
+	color: white;
+	font-size: 3vw;	
+}
+/*for homepage css*/
+.row h2
+{
+    color: #111;
+    padding-left: 30px;
+    font-size: 30px;
+} 
+.row h5
+{		
+	padding-left: 30px;
+	font-size: 20px;
+	color: #222;	
+}
+.row p
+{	
+	color: #555;
+	font-size: 18px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+    .nav a:hover
+    {             
+      color:#8c1aff;   
+      text-decoration: underline; 
+    }    
+    .nav a
+    {      
+      font-weight: bold;            
+      color:black;
+      text-decoration: none;      
+      font-size: 20px;            
+    }
+    /* The alert message box */
+.alert {  
+  margin: auto 38px auto 40px;
+  background-color: #222;
+  color: white;
+  text-align: center;
+  border: 2px solid #1111;
+  border-radius: 4px;  
+  margin-bottom: 15px;
+}
+.alert:hover
+{   
+  border: 2px dotted #ffff;
+  text-decoration: underline;
+}
+  /*odd dvider for below-timeline*/
+  .headerDivider1 {
+    border-left:2px solid black;height:60px;position:absolute;left:580px;margin-top:-9px;
+    }    
+    .headerDivider3 {
+    border-left:2px solid black;height:60px;position:absolute;left:760px;margin-top:-110px;
+    }    
+    /*even dvider for above-timeline*/
+    .headerDivider2 {
+    border-left:2px solid black;height:60px;position:absolute;left:670px;margin-top:27px;
+    }
+    .headerDivider4 {
+    border-left:2px solid black;height:60px;position:absolute;left:850px;margin-top:-6px;
+    }
+    /*horizontal timeline bar*/
+    hr
+    {
+        width: 37%;margin-left: 400px;margin-top: 65px;color: blueviolet;border-top: 4px solid blueviolet;border-radius: 9px;;
+    }
+    #category,#name,#pno,#symptoms,#smokehist,#travelinfo,#travelmedium,#opt
+ {
+  width: 75%;  
+  height: 35px;  
+  margin: 6px 50;  
+  padding-left: 10px;
+  display: inline-block;  
+  box-sizing: border-box;
+  border:none;
+   background-color:#e6e6e6;
+}
+#state,#userage,#occupation,#workcity,#curcity
+{
+	width: 16%;
+	height: 35px;  
+  margin: 6px 0;  
+  padding-left: 10px;
+  display: inline-block;  
+  box-sizing: border-box;
+  border:none;
+   background-color:#e6e6e6;	
+}
+button[type=button]
+{
+  background-color: #0077b3;color: #ffff;border:none;font-weight: bold;border-radius: 10px;border:none;height: 40px;width: 12%;margin-right: 10px;
+}
+button[type=button]:hover
+{
+  background-color: #0099e6;color:white;  
+}
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+/* Mark the active step: */
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4CAF50;
+}
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 6px 0 12px 0;
+  position: relative;
+}
+.container {
+  padding: 10px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;  
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 30px;
+}
+/* Modal Content/Box */
+.modal-content {
+  
+  background-color: #fefefe;
+  margin: 0% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 70%; /* Could be more or less, depending on screen size */
+  padding-bottom: 10px;
+}
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+} 
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+  </style>
+</head>
+<body style="background-color: #ffff;">    
+    <a href="home.php"><img src="images/logo2.png" style="height: 140px;width: 24%;margin-left: 27px;"></a>
+  <!--nav bar-->
+    <div class="nav" style="margin-left: 850px;margin-top: -85px;">             
+    
+            <a href="home.php" style="color: #8c1aff"> Home</a><a style="padding-left:10px ;border-right: 2px solid #222;"></a>
+            <a href="statistics.html"  style="padding-left: 10px;">Statistics</a><a style="padding-left:10px ;border-right: 2px solid #222;"></a>
+            <a href="prevention.html" style="padding-left: 10px;" >Measures</a><a style="padding-left:10px ;border-right: 2px solid #222;"></a>
+            <a href="help.html" style="padding-left: 10px;"> Help</a><a style="padding-left:10px ;border-right: 2px solid #222;"></a>
+            <a href="faq.php" style="padding-left: 10px;"> FAQs</a>       
+      </div>  
+       <!--</div>-->
+         
+    <br><br><br>
+    <!--alert box-->
+    <div class="alert">     
+      Know how can we help you in the covid pandemic. <a style="color: white;" href="#"><i class="fas fa-chevron-circle-right"></i></a>
+    </div>
+   <!--stats-->
+    <div style="margin-left:40px;margin-right: 40px;margin-top: 0px;background-color: #1111;padding: 10px;">
+      <p style="font-size: 22px;text-align: center;margin-left: -40px;font-weight: bold;color: #8c1aff;">Cases in India
+        <div style="column-count: 4;margin-left: 100px;font-weight: bold;margin-top: 40px;  ">
+          <div style="color: green;border-right: 2px solid #222;margin-right: 80px;">Confirmed
+            <p style="color: black;">2,35,540 +</p>
+          </div>
+          <div style="color: blue;border-right: 2px solid #222;margin-right: 80px;">Active
+            <p style="color: black;">1,10,960 +</p>
+          </div>
+          <div style="color: black;border-right: 2px solid #222;margin-right: 80px;">Recovered
+            <p style="color: black;">1,09,461 +</p>
+          </div>
+          <div style="color: red;">Deceased
+            <p style="color: black;">6,347 +</p>
+          </div>        
+        </div>
+        <p style="font-size: 17px;margin-left: 100px;"><br>Source: <a style="text-decoration: none;" href="https://www.mohfw.gov.in/">https://www.mohfw.gov.in/</a></p>
+      </p>
+    </div>
+      <!--take a test button-->
+    <button class="btn btn-primary btn-circle btn-md" title="Self analysis test" id="tstbtn"    
+    onclick="document.getElementById('id01').style.display='block'"><i class="fas fa-clipboard-check"></i></button>    
+     <!--overlay model for pop-up form-->
+	<div id="id01" class="modal">      
+    <form id="form" class="modal-content animate" action="" method="post">    
+    <div class="imgcontainer" >
+   	<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close">&times;</span>      
+    </div>
+
+    <div class="container" style="margin-left: 30px" >	
+<!-- user detail page -->
+<div class="tab">
+  <h3 style="font-size: 34px;border-left: 4px solid #660080;padding-left: 10px;margin-top:40px;margin-bottom: 20px;
+  width: auto;">Lets take a quick threat check!</h3>
+       <label for="name" style="font-size: 16px">Name</label><br>
+        <input id="name" name="name" type="text" style="font-size: 14px;" required="" placeholder="Your name.." autofocus=""><br>
+        <label for="pno" style="font-size: 16px;padding-top: 0px;margin-top: 2px">Contact no.</label><br>
+        <input id="pno" name="phone" type="tel" style="font-size: 14px;" placeholder="+91-"><br>    
+        <label for="state" style="font-size: 16px;padding-top: 0px;margin-top: 2px">State</label><br>
+        <input id="state" name="state" type="text" style="font-size: 14px;padding-left: 10px" placeholder="ex.Maharashtra">
+        <br>                        
+        <label for="category" style="font-size: 16px;margin-top: 2px">Gender</label><br>
+        <select id="category" style="font-size: 14;width: 15.5%;padding-left: 10px">
+          <option>Select</option>
+          <option style="font-size: 14;">Male</option>
+          <option style="font-size: 14;">Female</option>
+          <option style="font-size: 14;">Other+</option>
+        </select><br>
+        <label for="userage" style="font-size: 16px;padding-top: 0px;margin-top: 2px">Age</label><br>
+        <input id="userage" name="age" type="text" style="font-size: 14px;padding-left: 10px" placeholder="ex.18"><br>        
+</div>
+<!--Travel-info record page-->
+<div class="tab">
+  		 <h3 style="font-size: 34px;border-left: 4px solid #660080;padding-left: 10px;margin-top:40px;margin-bottom: 20px;
+  width: auto;">Evaluate your travel frequency?</h3>
+       <label for="curcity" style="font-size: 18px">Current Location</label><br>       
+        <input id="curcity" name="city" type="text" style="font-size: 14px;background-color:#e6e6e6;" required="" placeholder="ex.Delhi" autofocus=""><br>
+        <label for="workcity" style="font-size: 18px;margin-top: 6px">Work Location</label><br>        
+        <input id="workcity" name="city" type="text" style="font-size: 14px;margin-bottom: 6px;background-color:#e6e6e6;" required="" placeholder="Ex.Mumbai" autofocus=""><br>
+        <label for="occupation" style="font-size: 18px;">Occupation</label><br>        
+        <input id="occupation" name="Occupation" type="text" style="font-size: 14px;margin-bottom: 6px;background-color:#e6e6e6;" required="" placeholder="Ex.Doctor" autofocus=""><br>        
+        <label for="travelmedium" style="font-size: 18px;">Transport medium used</label><br>        
+        <select id="travelmedium" style="font-size: 14px;margin-bottom: 6px;background-color:#e6e6e6;">
+        	<option>Select a medium</option>
+        	<option style="font-size: 14px;">Personal Vehicle</option>
+        	<option style="font-size: 14px;">Cab</option>
+        	<option style="font-size: 14px;">Train or bus</option>
+        	<option style="font-size: 14px;">Airways</option>
+        </select><br>        
+        <label for="travelinfo" style="font-size: 18px;">Travel Duration</label><br>        
+        <select id="travelinfo" style="font-size: 14px;margin-bottom: 15px;background-color:#e6e6e6;">
+        	<option>Provide an interval</option>
+        	<option style="font-size: 14px;">Daily basis</option>
+        	<option style="font-size: 14px;">Once in previous 2 week</option>
+        	<option style="font-size: 14px;">More than once in this month</option>
+        </select><br>
+</div>
+<!--symptoms check page-->
+<div class="tab">
+	 	 <h3 style="font-size: 34px;border-left: 4px solid #660080;padding-left: 10px;margin-top:40px;margin-bottom: 20px;
+  width: auto;">Pick out symptoms faced!</h3>
+  	   <div style="column-count: 2;column-span: none;">
+       <label style="font-size: 18px;margin-bottom: 12px">Choose the ones faced (multiple choice allowed)</label><br>              	
+       <input type="checkbox" id="fever" value="fever">
+       <label for="fever">Fever</label><br>
+       <input type="checkbox" id="Fatigue" value="Fatigue">
+       <label for="Fatigue">Fatigue</label><br>
+       <input type="checkbox" id="cough" value="cough">
+       <label for="cough">Cough & Mucus</label><br><br>
+       <input type="checkbox" id="ache" value="ache">
+       <label for="ache">Body Ache</label><br>
+       <input type="checkbox" id="breath" value="breath">
+       <label for="breath">Shortness of breath</label><br>
+       <input type="checkbox" id="chestpain" value="chestpain">
+       <label for="chestpain">Chest Pain</label><br>
+       </div>
+       <input type="checkbox" id="None" value="none">
+       <label for="None">None</label><br>       
+       <label for="symptoms" style="font-size: 18px;margin-top: 8px">When did the symptoms show up?</label><br>
+       <select id="symptoms" style="font-size: 14px;margin-bottom: 10px">
+       	<option>Select</option>
+       	<option>Not Yet</option>
+       	<option>Within past 1-2 days</option>
+       	<option>Within this week</option>
+       	<option>More than a week</option>
+       </select><br>
+       <label for="smokehist" style="font-size: 18px">Involved in any form of smoking</label><br>
+       <select id="smokehist" style="font-size: 14px;margin-bottom: 10px">
+       	<option>Select</option>
+       	<option>No</option>
+       	<option>Yes,previously</option>
+       	<option>Yes,currently</option>       	
+       </select><br>
+</div>  
+<!--self analysis page-->
+<div class="tab">
+  <h3 style="font-size: 34px;border-left: 4px solid #660080;padding-left: 10px;margin-top:40px;margin-bottom: 20px;
+  width: auto;">Self analysis!</h3>
+  <label>*this is done in order to evaluate level of precaution taken by user at personal level</label><br>  
+  <label for="opt" style="font-size: 18px;margin-top: 10px;">Are you maintaining proper social-distance in workspace</label><br>
+  <select id="opt" style="font-size: 14px;">
+    <option>Select</option>
+    <option>Yes</option>
+    <option>Not much</option>
+  </select><br>
+  <label for="opt" style="font-size: 18px;margin-top: 10px;">Do you Sanitize or disinfect your belongings well before use</label><br>
+  <select id="opt" style="font-size: 14px;">
+    <option>Select</option>
+    <option>Yes</option>
+    <option>Not oftenly</option>
+  </select><br>
+  <label for="opt" style="font-size: 18px;margin-top: 10px;">Does your work require you to deal among mass (ex.shopkeeper,peddler..)</label><br>
+  <select id="opt" style="font-size: 14px;">
+    <option>Select</option>
+    <option>Yes</option>
+    <option>Not much</option>
+  </select><br>
+</div>
+
+    <div style="display: inline-block;margin-left: 670px;height: 40px;width: 65%;margin-top: 10px">
+    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+    <button type="button" id="nextBtn"  onclick="nextPrev(1)">Next</button>  
+    </div>
+<!-- Circles which indicates the steps of the form: -->
+<div style="margin-top:10px;margin-left: 35%">
+  <span class="step"></span>
+  <span class="step"></span>
+  <span class="step"></span>  
+</div>
+
+</div>
+</form>
+</div>
+    <script>
+      // Get the modal1
+      var modal = document.getElementById('id01'); 
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }    
+      }
+      </script>
+    <script>
+    
+      var currentTab = 0; // Current tab is set to be the first tab (0)
+    showTab(currentTab); // Display the current tab
+    
+    function showTab(n) {
+      // This function will display the specified tab of the form ...
+      var x = document.getElementsByClassName("tab");
+      x[n].style.display = "block";
+      // ... and fix the Previous/Next buttons:
+      if (n == 0) {
+        document.getElementById("prevBtn").style.display = "none";
+      } else {
+        document.getElementById("prevBtn").style.display = "inline";
+      }
+      if (n == (x.length - 1)) {
+        document.getElementById("nextBtn").innerHTML = "Get Result";
+    
+      } else {
+        document.getElementById("nextBtn").innerHTML = "Next";
+      }
+      // ... and run a function that displays the correct step indicator:
+      fixStepIndicator(n)
+    }
+    
+    function nextPrev(n) {
+      // This function will figure out which tab to display
+      var x = document.getElementsByClassName("tab");
+      // Exit the function if any field in the current tab is invalid:
+      if (n == 1 && !validateForm()) return false;
+      // Hide the current tab:
+      x[currentTab].style.display = "none";
+      // Increase or decrease the current tab by 1:
+      currentTab = currentTab + n;
+      // if you have reached the end of the form... :
+      if (currentTab >= x.length) {
+        //...the form gets submitted:
+        document.getElementById("id01").submit();
+        return false;
+      }
+      // Otherwise, display the correct tab:
+      showTab(currentTab);
+    }
+    
+    function validateForm() {
+      // This function deals with validation of the form fields
+      var x, y, z,i, valid = true;
+      x = document.getElementsByClassName("tab");
+      y = x[currentTab].getElementsByTagName("input");
+      // A loop that checks every input field in the current tab:
+      
+      for (i = 0; i < y.length; i++) {
+        // If a field is empty...
+        if (y[i].value == "") {
+          // add an "invalid" class to the field:
+          y[i].className += " invalid";
+          // and set the current valid status to false:
+          valid = false;
+        }
+      }
+      // If the valid status is true, mark the step as finished and valid:
+      if (valid) {
+        document.getElementsByClassName("step")[currentTab].className += " finish";    
+      }  
+      return valid; // return the valid status
+    }
+    
+    function fixStepIndicator(n) {
+      // This function removes the "active" class of all steps...
+      var i, x = document.getElementsByClassName("step");
+      for (i = 0; i < x.length; i++) {
+        x[i].className = x[i].className.replace(" active", "");
+      }
+      //... and adds the "active" class to the current step:
+      x[n].className += " active";
+    }
+    </script>
+         <!--scroll to top button-->
+         <button onclick="topFunction()" id="myBtn"><i class="fas fa-arrow-up"></i></button>     
+         <script>
+             //Get the button:
+     mybutton = document.getElementById("myBtn");
+     
+     // When the user scrolls down 20px from the top of the document, show the button
+     window.onscroll = function() {scrollFunction()};
+     
+     function scrollFunction() {
+       if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+         mybutton.style.display = "block";
+       } else {
+         mybutton.style.display = "none";
+       }
+     }
+     
+     // When the user clicks on the button, scroll to the top of the document
+     function topFunction() {
+       document.body.scrollTop = 0; // For Safari
+       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+     }
+         </script>
+     	<!--covid overview-->
+    <div class="row" style="margin-right: 40px;margin-left:38px;margin-top: 30px;background-color: #1111;" >
+      <h2 style="margin-left: 30px;padding-left: 10px;border-left: 8px solid #8c1aff">Coronavirus (COVID-19)</h2>
+      <h5><strong>Also known as: SARS-CoV-2, 2019 Novel Coronavirus, nCov</strong></h5>
+      <p style="width:65%;margin-left: 380px;"><br>
+        COVID-19 is a new illness that can affect your lungs and airways. It's caused by a virus called coronavirus.
+      Most common symptoms of COVID-19 are fever, tiredness, and dry cough. Symptoms may appear 2-14 days after exposure and vary in severity.
+      Simple measures like washing your hands often with soap and water can help stop viruses like coronavirus (COVID-19) spreading.
+      There's no specific treatment for coronavirus (COVID-19). People with COVID-19 should receive supportive care to relieve symptoms. Currently there is no vaccine to prevent the disease.
+      The disease can spread from person to person through small droplets from the nose or mouth when a person with COVID-19 coughs or exhales. People can also catch COVID-19 by touching objects or surfaces (where droplets land), then touching their eyes, nose or mouth.
+        </p>           
+        <img src="images/corona.gif" style="float: left;margin-top: -170px;margin-left: 40px;z-index: 2;">
+        <p style="width: 65%;margin-left: 380px;"><br>
+          Coronaviruses are a group of related viruses that cause diseases in mammals and birds. 
+          In humans, coronaviruses cause respiratory tract infections that can range from mild to lethal.
+          Mild illnesses include some cases of the common cold (which has other possible causes, predominantly rhinoviruses),
+          while more lethal varieties can cause SARS, MERS, and COVID-19. Symptoms in other species vary: in chickens, they cause an upper respiratory tract disease, while in cows and pigs they cause diarrhea.
+          There are yet to be vaccines or antiviral drugs to prevent or treat human coronavirus infections.       
+        </p><br>
+      </div>         
+      <div class="row" style="width: 50%;margin-top: 30px;margin-bottom: 30px;margin-left: 25px;">
+      <h2 style="margin-left: 30px;padding-left: 10px;border-left: 8px solid #8c1aff">At a Glance</h2><br>
+      <p>Every case is different. You may have mild flu-like symptoms for a few days after exposure, then get better. But some cases can be severe or fatal.</p>
+      <h5 style="color: black">Causes of the New Coronavirus</h5>
+      <p>
+	      Researchers aren’t sure what caused it. There’s more than one coronavirus. They’re common in people and in animals including bats, camels, cats, and cattle. SARS-CoV-2, the virus that causes COVID-19, is similar to MERS and SARS.<br> They all came from bats. Many people who got the disease early on were linked to a large live seafood and animal market in China -- you might hear it called a <strong>"Vet market.”</strong><br> The first cases may have come from animals sold in the market, then spread from person to person.
+      </p><br>
+      <p>The symptoms of most coronaviruses are similar to any other upper respiratory infection, including a runny nose, coughing, sore throat, and sometimes a fever. In most cases, you won't know whether you have a coronavirus or a different cold-causing virus, such as a rhinovirus. You treat this kind of coronavirus infection the same way you treat a cold.</p>
+    </div>
+     <img src="pic.jpg" width="50%" style="margin-left: 670px;height: 630px;margin-top: -650px;">
+     <div class="footer">
+      <h2 style="color: white;font-size: 36px;column-span: none;"> Contact Us!</h2>
+      
+      <br><br>
+      <h5 style="width: 380px;color: #a6a6a6;font-size: 20px">For any feedback, suggestion or help please drop a message we will get back to you soon.</h5>
+        <br><h5 style="width: 380px;color: #a6a6a6;font-size: 20px;padding-bottom:10px">We eagerly await to hear from you!</h5><br>
+      <form action="" method="post">
+        <label for="tname" style="padding-top: 10px;color:white;font-size: 18px">Name: </label><br>
+        <input id="tname"  style="border:none;height: 30px;padding-left:4px" type="text" name="name" placeholder="Enter Name here"><br>
+        <!--<label for="tpno" style="padding-top: 10px;color:white;font-size: 18px">Contact No: </label><br>
+        <input id="tpno" style="border:none;height: 30px" type="tel" name="phone" placeholder="+91"><br>
+        --><label for="tpno" style="padding-top: 10px;color:white;font-size: 18px">Email: </label><br>
+        <input id="tpno" style="border:none;height: 30px;padding-left:4px" type="email" name="email" placeholder="Email"><br>
+        <label for="tmsg" style="padding-top: 10px;color:white;font-size: 18px">Message: </label><br>
+        <textarea id="tmsg"  name="msg"  style="font-size: 16px;resize: none;width: 65%;height: 70px;padding-left:4px" placeholder="Enter your valuable suggestion!" required=""></textarea><br>
+        <input type="submit" name="submit" style="border:none;background-color: #0066ff;color:white;font-weight: bold;border-radius: 10px;margin-top: 20px;height: 40px;width: 23%;">
+        <h3 style="color: white"> <?=$result; ?></h3>
+        </form>
+        
+    </div>
+    <div  style="background-color: black;padding-bottom: 20px;border-bottom-left-radius:8px;border-bottom-right-radius: 8px;text-align:center">	
+    <div class="footerf2" style="padding-top:30px;text-align:left;padding-left:40px;color:grey;font-size:18px">	
+        <!--Back to top text-->
+        <div style="text-align:center;padding-left:30px;padding-top:10px;padding-bottom:20px;color:#e6e6e6;font-size:16px">
+            Back to top
+        </div>    
+        <div style="column-count:3;column-span:none;padding-bottom:10px;padding-top:15px;">
+        <!--about section-->
+        <h3 style="color:#8c1aff;font-size:22px;margin-top:10px">
+            Our Aim:        
+        </h3>
+        <p style="width:100%;font-size:15px;color:#555">
+        This Site gives a platform for users to find about covid-19 stats provide an in-short description of every necessary help
+        in the duration of pandemic, though we primarily focus on bringing non-profit organisations together and also gathering volunteers
+        and funds for them, giving viewers a glimpse of thier hard-work and making gathering of funds and resources for them easier.
+        </p>    
+        <!--quick links-->      
+        <h3 style="color:#8c1aff;font-size:22px;margin-top:0px;margin-left:170px">
+            Quick Links 
+        </h3>
+        <ul id="qllist" style="list-style-type:none;margin-left:132px">
+            <a style="text-decoration:none"><li>About Us</li></a>
+            <a style="text-decoration:none"><li>How we work</li></a>
+            <a style="text-decoration:none"><li>Services for NGO's</li></a>
+            <a style="text-decoration:none"><li>Privacy policy</li></a>       
+            <a style="text-decoration:none"><li>Refrence Links</li></a>     
+        </ul>
+        <p style="padding-top: 0px;padding-bottom: 10px;color: #8c1aff;font-size: 22px">Our Social-media Handles :</p>    
+      <a href="https://www.facebook.com/rachitsingh0904/" style="color:white;"><i id="i1" class="fab fa-facebook-square"></i></a>
+      <a href="https://twitter.com/rachit0904" style="color: white;padding-left: 20px"><i id="i1" class="fab fa-twitter"></i></a>	
+      <a href="https://www.linkedin.com/in/rachit-singh-53575117a/" style="color: white;padding-left: 20px"><i id="i1" class="fab fa-linkedin"></i></a>	
+        <a href="mailto:singhrachit569@gmail.com?cc=narendrarewar@gmail.com" style="color: white;padding-left: 20px"><i id="i1" class="fas fa-envelope"></i></a>	    
+      <p style="padding-top:20px;width:35%;font-size: 22px;border:none">Get in touch !</p>  
+        </div>    
+        <!--Copyright claimer-->    
+        <p style="padding-top:10px;color:#a6a6a6">
+       Copyright <i class="far fa-copyright"></i> Devcorps.inc 2020
+      </p>
+    </div>	
+    </div>
+    </div>
+</body>
+</html>
